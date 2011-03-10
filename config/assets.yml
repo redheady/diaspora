@@ -55,6 +55,7 @@ javascripts:
     - public/javascripts/aspect-edit-pane.js
   people:
     - public/javascripts/vendor/jquery.autoSuggest.js
+    - public/javascripts/publisher.js
   photos:
     - public/javascripts/photo-show.js
   inbox:

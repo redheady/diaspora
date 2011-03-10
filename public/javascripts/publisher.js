@@ -306,6 +306,22 @@ var Publisher = {
       '<input id="services_" name="services[]" type="hidden" value="'+service+'">');
     };
   },
+  toggleAspectIds: function(aspectId) {
+    var hidden_field = $('#publisher [name="aspect_ids[]"][value="'+aspectId+'"]')
+    if(hidden_field.length > 0){
+      hidden_field.remove();
+    } else {
+      $("#publisher .content_creation form").append(
+      '<input id="aspect_ids_" name="aspect_ids[]" type="hidden" value="'+aspectId+'">');
+    };
+  },
+  bindAspectToggles: function() {
+    $('#publisher .aspect_badge').bind("click", function(){
+      alert("yay");
+      $(this).toggleClass("removed");
+      Publisher.toggleAspectIds($(this).attr('data-guid'));
+    });
+  },
   initialize: function() {
     Publisher.cachedForm = false;
     Publisher.cachedInput = false;
@@ -314,6 +330,7 @@ var Publisher = {
 
     Publisher.bindServiceIcons();
     Publisher.bindPublicIcon();
+    Publisher.bindAspectToggles();
 
     if ($("#status_message_fake_text").val() == "") {
       Publisher.close();
