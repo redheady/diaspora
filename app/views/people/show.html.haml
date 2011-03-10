@@ -60,6 +60,9 @@
         = @person.diaspora_handle
       .description
         = @person.profile.format_tags(@person.profile.tag_string)
+
+  - if @aspect_ids
+    = render 'shared/publisher', :aspect => @aspect, :aspect_ids => @aspect_ids, :aspects_with_person => @aspects_with_person
   %hr
 
   - if @posts.count > 0

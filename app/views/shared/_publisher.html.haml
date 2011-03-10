@@ -35,7 +35,13 @@
 
       .options_and_submit
         %div.mention_helper
-          %i= t('.mention_helper_text')
+          - if aspect != :profile
+            %i= t('.mention_helper_text')
+          - else
+            .badges
+              %i= 'publishing to: '
+              = aspect_badges(aspects_with_person, :link => false)
+
 
         .right
           #fileInfo
