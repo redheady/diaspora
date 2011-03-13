@@ -7,6 +7,14 @@
     $(".question_mark").tipsy({trigger: 'hover', gravity: 'w'});
   });
 
+-if aspect == :profile
+  :javascript
+    $(document).ready(function() 
+      {
+        var person = {name: '#{person.name}', handle: '#{person.diaspora_handle}' };
+                    Publisher.autocompletion.onSelect($("#status_message_fake_message"),person,'#{person.name}');
+                  });
+
 #publisher
 
   #click_to_share

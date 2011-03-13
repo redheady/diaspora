@@ -75,8 +75,12 @@ var Publisher = {
     },
 
     onSelect :  function(visibleInput, data, formatted) {
+      console.log(visibleInput);
+      console.log(data);
+      console.log(formatted)
       var visibleCursorIndex = visibleInput[0].selectionStart;
       var visibleLoc = Publisher.autocompletion.addMentionToInput(visibleInput, visibleCursorIndex, formatted);
+      console.log(visibleLoc);
       $.Autocompleter.Selection(visibleInput[0], visibleLoc[1], visibleLoc[1]);
 
       var mentionString = Publisher.autocompletion.hiddenMentionFromPerson(data);
@@ -317,9 +321,13 @@ var Publisher = {
   },
   bindAspectToggles: function() {
     $('#publisher .aspect_badge').bind("click", function(){
-      alert("yay");
-      $(this).toggleClass("removed");
-      Publisher.toggleAspectIds($(this).attr('data-guid'));
+      var unremovedAspects = $(this).parent().children('.aspect_badge').length - $(this).parent().children(".aspect_badge.removed").length;
+      if(!$(this).hasClass('removed') && ( unremovedAspects == 1 )){
+        alert("You must publish to at least one aspect")
+      }else{
+        Publisher.toggleAspectIds($(this).attr('data-guid'));
+        $(this).toggleClass("removed");
+      };
     });
   },
   initialize: function() {

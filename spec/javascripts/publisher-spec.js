@@ -32,7 +32,7 @@ describe("Publisher", function() {
       expect(Publisher.bindAspectToggles).toHaveBeenCalled();
     });
    
-    it('toggles dim only on the clicked icon', function(){
+    it('toggles removed only on the clicked icon', function(){
       expect($("#publisher .aspect_badge").first().hasClass("removed")).toBeFalsy();
       expect($("#publihser .aspect_badge").last().hasClass("removed")).toBeFalsy();
 
@@ -51,6 +51,20 @@ describe("Publisher", function() {
       aspBadge.click();
 
       expect(Publisher.toggleAspectIds).toHaveBeenCalledWith(aspNum);
+    });
+
+    it('does not execute if it is the last non-removed aspect', function(){
+      var aspects = $("#publisher .aspect_badge").length;
+      spyOn(Publisher, 'toggleAspectIds');
+
+      Publisher.bindAspectToggles();
+      spyOn(window, 'alert');// click through the dialog if it happens
+      $("#publisher .aspect_badge").each(function(){$(this).click()});
+
+      var lastAspectNum = $("#publisher .aspect_badge").last().attr('data-guid');
+
+      expect($("#publisher .aspect_badge.removed").length).toBe(aspects-1);
+      expect(Publisher.toggleAspectIds.callCount).toBe(1);
     });
   });
   describe('toggleAspectIds', function(){
