@@ -323,7 +323,7 @@ var Publisher = {
     $('#publisher .aspect_badge').bind("click", function(){
       var unremovedAspects = $(this).parent().children('.aspect_badge').length - $(this).parent().children(".aspect_badge.removed").length;
       if(!$(this).hasClass('removed') && ( unremovedAspects == 1 )){
-        alert("You must publish to at least one aspect")
+        alert(Diaspora.widgets.i18n.t('publisher.at_least_one_aspect'))
       }else{
         Publisher.toggleAspectIds($(this).attr('data-guid'));
         $(this).toggleClass("removed");
