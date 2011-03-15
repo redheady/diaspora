@@ -12,8 +12,9 @@
     $(document).ready(function() 
       {
         var person = {name: '#{person.name}', handle: '#{person.diaspora_handle}' };
-                    Publisher.autocompletion.onSelect($("#status_message_fake_text"),person,'#{person.name}');
-                  });
+        Publisher.autocompletion.onSelect($("#status_message_fake_text"),person,'#{person.name}');
+        $('#publisher').addClass('hidden');
+      });
 
 #publisher
 

@@ -52,6 +52,8 @@ Feature: posting
     
     Scenario Outline: posting to all aspects from the profile page
       Given I am on "alice@alice.alice"'s page
+        And I have turned off jQuery effects
+        And I click "Mention" button
         And I expand the publisher
         And I append "#publisher #status_message_text" with "I am eating a yogurt"
         And I press "Share"
@@ -63,16 +65,18 @@ Feature: posting
           | PostTo      | see     |
           | DidntPostTo | see     |
 
-      Scenario Outline: posting to one aspect from the profile page
-        Given I am on "alice@alice.alice"'s page
-          And I expand the publisher
-          And I append "#publisher #status_message_text" with "I am eating a yogurt"
-          And I follow "DidntPostTo" within "#publisher"
-          And I press "Share"
-          And I follow "<aspect>"
-          Then I should <see> "I am eating a yogurt"
+    Scenario Outline: posting to one aspect from the profile page
+      Given I am on "alice@alice.alice"'s page
+        And I have turned off jQuery effects
+        And I click "Mention" button
+        And I expand the publisher
+        And I append "#publisher #status_message_text" with "I am eating a yogurt"
+        And I follow "DidntPostTo" within "#publisher"
+        And I press "Share"
+        And I follow "<aspect>"
+        Then I should <see> "I am eating a yogurt"
 
-          Examples:
-            | aspect      | see     |
-            | PostTo      | see     |
-            | DidntPostTo | not see |
+        Examples:
+          | aspect      | see     |
+          | PostTo      | see     |
+          | DidntPostTo | not see |

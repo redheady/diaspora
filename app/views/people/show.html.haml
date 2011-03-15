@@ -45,8 +45,9 @@
 
 
     - else
-      - if user_signed_in? && @contact.person
+      - if user_signed_in? && @contact.person && @contact.pending? == false
         .right
+          = link_to t('.mention'), "#", :id => 'mention', :class => 'button'
           = link_to t('.message'), new_conversation_path(:contact_id => @contact.id, :name => @contact.person.name, :contact_id => @contact.id), :class => 'button', :rel => 'facebox'
 
         /- if @post_type == :photos
