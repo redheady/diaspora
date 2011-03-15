@@ -46,7 +46,7 @@ describe("Publisher", function() {
     it('binds to the services icons and toggles the hidden field', function(){
       spyOn(Publisher, 'toggleAspectIds');
       Publisher.bindAspectToggles();
-      var aspBadge = $("#publisher .aspect_badge").last();
+      var aspBadge = $("#publisher .aspect_badge a").last();
       var aspNum = aspBadge.attr('data-guid');
       aspBadge.click();
 
@@ -59,9 +59,9 @@ describe("Publisher", function() {
 
       Publisher.bindAspectToggles();
       spyOn(window, 'alert');// click through the dialog if it happens
-      $("#publisher .aspect_badge").each(function(){$(this).click()});
+      $("#publisher .aspect_badge a").each(function(){$(this).click()});
 
-      var lastAspectNum = $("#publisher .aspect_badge").last().attr('data-guid');
+      var lastAspectNum = $("#publisher .aspect_badge a").last().attr('data-guid');
 
       expect($("#publisher .aspect_badge.removed").length).toBe(aspects-1);
       expect(Publisher.toggleAspectIds.callCount).toBe(1);

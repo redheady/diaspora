@@ -15,7 +15,7 @@ end
 When /^(?:|I )append "([^"]*)" with "([^"]*)"$/ do |field, value|
   script = "$('#{ field }').val(function(index, value) {
   return value + ' ' + '#{value}'; });"
-  evaluate_script(script)
+   page.execute_script(script)
 end
 
 And /^I hover over the post$/ do

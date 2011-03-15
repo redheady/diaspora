@@ -321,7 +321,7 @@ var Publisher = {
       if(!$(this).hasClass('removed') && ( unremovedAspects == 1 )){
         alert(Diaspora.widgets.i18n.t('publisher.at_least_one_aspect'))
       }else{
-        Publisher.toggleAspectIds($(this).attr('data-guid'));
+        Publisher.toggleAspectIds($(this).children('a').attr('data-guid'));
         $(this).toggleClass("removed");
       };
     });

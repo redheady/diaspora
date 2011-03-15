@@ -53,7 +53,7 @@ Feature: posting
     Scenario Outline: posting to all aspects from the profile page
       Given I am on "alice@alice.alice"'s page
         And I expand the publisher
-        And I follow "#publisher #status_message_fake_text" with "I am eating a yogurt"
+        And I append "#publisher #status_message_text" with "I am eating a yogurt"
         And I press "Share"
         And I follow "<aspect>"
         Then I should <see> "I am eating a yogurt"
@@ -66,7 +66,7 @@ Feature: posting
       Scenario Outline: posting to one aspect from the profile page
         Given I am on "alice@alice.alice"'s page
           And I expand the publisher
-          And I append "#publisher #status_message_fake_text" with "I am eating a yogurt"
+          And I append "#publisher #status_message_text" with "I am eating a yogurt"
           And I follow "DidntPostTo" within "#publisher"
           And I press "Share"
           And I follow "<aspect>"
