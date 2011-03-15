@@ -5,15 +5,17 @@ Feature: posting
     I want to tell the world I am eating a yogurt
     
     Background:
-      Given a user with email "bob@bob.bob"
-      And a user with email "alice@alice.alice"
+      Given a user with username "bob"
+      And a user with username "alice"
       When I sign in as "bob@bob.bob"
-      And a user with email "bob@bob.bob" is connected with "alice@alice.alice"
+      And a user with username "bob" is connected with "alice"
+      And I have an aspect called "PostTo"
+      And I have an aspect called "DidntPostTo"
+      And I have user with username "alice" in an aspect called "PostTo"
+      And I have user with username "alice" in an aspect called "DidntPostTo"
 
       And I have no open aspects saved
-        And I have an aspect called "PostTo"
-        And I have an aspect called "DidntPostTo"
-        And I am on the home page
+      And I am on the home page
 
     Scenario: post to all aspects
       Given I expand the publisher
@@ -51,8 +53,7 @@ Feature: posting
     Scenario Outline: posting to all aspects from the profile page
       Given I am on "alice@alice.alice"'s page
         And I expand the publisher
-       Then I should see "alice@alice.alice" within "status_message_text"
-        And I fill in "status_message_text" with "@{Alice Smith; alice@alice.alice} I am eating a yogurt"
+        And I follow "#publisher #status_message_fake_text" with "I am eating a yogurt"
         And I press "Share"
         And I follow "<aspect>"
         Then I should <see> "I am eating a yogurt"
@@ -65,9 +66,8 @@ Feature: posting
       Scenario Outline: posting to one aspect from the profile page
         Given I am on "alice@alice.alice"'s page
           And I expand the publisher
-          Then I should see "alice@alice.alice" within "status_message_text"
-          And I fill in "status_message_text" with "@{Alice Smith; alice@alice.alice} I am eating a yogurt"
-          And I follow "DidntPostTo"
+          And I append "#publisher #status_message_fake_text" with "I am eating a yogurt"
+          And I follow "DidntPostTo" within "#publisher"
           And I press "Share"
           And I follow "<aspect>"
           Then I should <see> "I am eating a yogurt"

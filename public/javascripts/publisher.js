@@ -75,12 +75,8 @@ var Publisher = {
     },
 
     onSelect :  function(visibleInput, data, formatted) {
-      console.log(visibleInput);
-      console.log(data);
-      console.log(formatted)
       var visibleCursorIndex = visibleInput[0].selectionStart;
       var visibleLoc = Publisher.autocompletion.addMentionToInput(visibleInput, visibleCursorIndex, formatted);
-      console.log(visibleLoc);
       $.Autocompleter.Selection(visibleInput[0], visibleLoc[1], visibleLoc[1]);
 
       var mentionString = Publisher.autocompletion.hiddenMentionFromPerson(data);

@@ -11,6 +11,13 @@ And /^I expand the publisher$/ do
     ')
 end
 
+
+When /^(?:|I )append "([^"]*)" with "([^"]*)"$/ do |field, value|
+  script = "$('#{ field }').val(function(index, value) {
+  return value + ' ' + '#{value}'; });"
+  evaluate_script(script)
+end
+
 And /^I hover over the post$/ do
   page.execute_script('$(".stream_element").first().mouseover()')
 end
