@@ -54,9 +54,9 @@ Feature: posting
       Given I am on "alice@alice.alice"'s page
         And I have turned off jQuery effects
         And I click "Mention" button
-        And I expand the publisher
-        And I append "#publisher #status_message_text" with "I am eating a yogurt"
-        And I press "Share"
+        And I expand the publisher in the modal window
+        And I append "#publisher #status_message_text" with "I am eating a yogurt" in the modal window
+        And I press "Share" in the modal window
         And I follow "<aspect>"
         Then I should <see> "I am eating a yogurt"
 
@@ -69,10 +69,10 @@ Feature: posting
       Given I am on "alice@alice.alice"'s page
         And I have turned off jQuery effects
         And I click "Mention" button
-        And I expand the publisher
-        And I append "#publisher #status_message_text" with "I am eating a yogurt"
-        And I follow "DidntPostTo" within "#publisher"
-        And I press "Share"
+        And I expand the publisher in the modal window
+        And I append "#publisher #status_message_text" with "I am eating a yogurt" in the modal window
+        And I follow "DidntPostTo" within "#publisher" in the modal window
+        And I press "Share" in the modal window
         And I follow "<aspect>"
         Then I should <see> "I am eating a yogurt"
 
