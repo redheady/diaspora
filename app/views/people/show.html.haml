@@ -47,7 +47,7 @@
     - else
       - if user_signed_in? && @contact.person && @contact.pending? == false
         .right
-          = link_to t('.mention'), "#", :id => 'mention', :class => 'button'
+          = link_to t('.mention'), new_status_message_path(:person_id => @person.id), :class => 'button', :rel => 'facebox'
           = link_to t('.message'), new_conversation_path(:contact_id => @contact.id, :name => @contact.person.name, :contact_id => @contact.id), :class => 'button', :rel => 'facebox'
 
         /- if @post_type == :photos
@@ -62,8 +62,6 @@
       .description
         = @person.profile.format_tags(@person.profile.tag_string)
 
-  - if @aspect_ids
-    = render 'shared/publisher', :aspect => @aspect, :aspect_ids => @aspect_ids, :aspects_with_person => @aspects_with_person, :person => @person
   %hr
 
   - if @posts.count > 0
